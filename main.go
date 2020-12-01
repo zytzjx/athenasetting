@@ -44,13 +44,14 @@ func Save(path string, v interface{}) error {
 
 func main() {
 	Log.NewLogger("setting")
+	Log.NewLogger("version:20.11.30.0  by Jefferyzhang")
 	setting, err := companysetting.Download()
 	if err != nil {
 		Log.Log.Error(err)
 		os.Exit(2)
 	}
 	// Greent no support features, why respone??
-	delete(setting["settings"].(map[string]interface{}), "features")
+	// delete(setting["settings"].(map[string]interface{}), "features")
 	if err = Save("setting.json", setting); err != nil {
 		Log.Log.Error(err)
 		os.Exit(3)
